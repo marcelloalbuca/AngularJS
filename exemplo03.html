@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app="aluguelCarro">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='Content-Type' content="text/html">
+    <title>Aluguel de Carro</title>
+    <script src='angular.js'></script>
+    <script>
+        
+        var alugaCarro = angular.module('aluguelCarro', []);
+        alugaCarro.controller('alugarCarroCtrl', function ($scope) {
+            $scope.carros = [
+                {marca: "Chevrolet", modelo: "Onix", cor: "Preto", anoModelo: "2018", combustivel: "Flex"},
+                {marca: "Chevrolet", modelo: "Blazer", cor: "Prata", anoModelo: "2016", combustivel: "Flex"},
+                {marca: "Ford", modelo: "Fiesta", cor: "Branca", anoModelo: "2016", combustivel: "Flex"},
+                {marca: "Honda", modelo: "City", cor: "Preta", anoModelo: "2017", combustivel: "Flex"},
+                {marca: "Toyota", modelo: "Corolla", cor: "Cinza", anoModelo: "2016", combustivel: "Flex"},
+                {marca: "Toyota", modelo: "Picape Hilux", cor: "Prata", anoModelo: "2017", combustivel: "Diesel"},
+            
+            ];
+
+            $scope.marcas = ["Chevrolet", "Ford", "Honda", "Toyota", "Fiat", "Volkswagen"];
+            $scope.cores = ["Branca", "Preto", "Prata", "Cinza", "Vermelha", "Azul"];
+            $scope.tipos = ["Hatch", "Cupê", "Sedã", "Perua", "Picape", "Van", "Minivan", "SUV"];
+            $scope.combustiveis = ["Gasolina", "Álcool", "Diesel", "Gás/GLP", "Flexível"];
+
+            $scope.adicionarCarro = function (carro) {
+                $scope.carros.push(carro);
+                delete $scope.carro;
+            };
+        });
+
+    </script>
+</head>
+<body ng-controller="alugarCarroCtrl">
+<h3>Aluguel de Carros</h3>
+<table>
+    <tr>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Cor</th>
+        <th>Ano modelo</th>
+        <th>combustível</th>
+    </tr>
+    <tr ng-repeat="carro in carros">
+
+        <td> {{ carro.marca }} </td>
+        <td> {{ carro.modelo }} </td>
+        <td> {{ carro.cor }} </td>
+        <td> {{ carro.anoModelo }} </td>
+        <td> {{ carro.combustivel }} </td>
+
+    </tr>
+</table>
+<hr/>
+<p>
+    <label>Selecione a marca: </label>
+    <select ng-model="carro.marca" ng-options="marca for marca in marcas"></select>
+</p>
+
+<p><label>Modelo: </label><input type="text" ng-model="carro.modelo"></p>
+
+<p>
+    <label>Selecione o tipo: </label>
+    <select ng-model="carro.tipo" ng-options="tipo for tipo in tipos"></select>
+</p>
+
+<p>
+    <label>Selecione a cor: </label>
+    <select ng-model="carro.cor" ng-options="cor for cor in cores"></select>
+</p>
+
+<p><label>Ano Modelo: </label><input type="text" ng-model="carro.anoModelo"></p>
+<p>
+    <label>Selecione o combustível: </label>
+    <select ng-model="carro.combustivel" ng-options="combustivel for combustivel in combustiveis"></select>
+</p>
+
+<br/>
+
+<button ng-click="adicionarCarro(carro)">Adicionar </button>
+    
+</body>
+</html>
