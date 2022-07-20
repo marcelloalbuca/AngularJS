@@ -4,11 +4,13 @@
     <meta charset='utf-8'>
     <meta http-equiv='Content-Type' content="text/html">
     <title>Aluguel de Carro</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
     <script src='angular.js'></script>
     <script>
         
         var alugaCarro = angular.module('aluguelCarro', []);
         alugaCarro.controller('alugarCarroCtrl', function ($scope) {
+            $scope.nomeAplicacao = "Aluguel de Carro - Versão 3";
             $scope.carros = [
                 {marca: "Chevrolet", modelo: "Onix", cor: "Preto", anoModelo: "2018", combustivel: "Flex"},
                 {marca: "Chevrolet", modelo: "Blazer", cor: "Prata", anoModelo: "2016", combustivel: "Flex"},
@@ -31,16 +33,43 @@
         });
 
     </script>
+    <style>
+        .table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-control{
+            margin-left: auto;
+            margin-right: auto;
+            background-color: beige;
+        }
+
+        .tituloAplicacao {
+            background-color: #fcdd7a;
+            border-radius: 5px;
+            text-align: center;
+            width: 800px;
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+    </style>
 </head>
 <body ng-controller="alugarCarroCtrl">
-<h3>Aluguel de Carros</h3>
-<table>
+    <div class="tituloAplicacao">
+        <h3 ng-bind="nomeAplicacao"></h3>
+    </div>
+<table class="table">
     <tr>
         <th>Marca</th>
         <th>Modelo</th>
         <th>Cor</th>
         <th>Ano modelo</th>
-        <th>combustível</th>
+        <th>Combustível</th>
     </tr>
     <tr ng-repeat="carro in carros">
 
@@ -53,12 +82,14 @@
     </tr>
 </table>
 <hr/>
+<div class="form-control">
 <p>
     <label>Selecione a marca: </label>
-    <select ng-model="carro.marca" ng-options="marca for marca in marcas"></select>
-</p>
-
-<p><label>Modelo: </label><input type="text" ng-model="carro.modelo"></p>
+    <select ng-model="carro.marca" ng-options="marca for marca in marcas">
+    <option value="">Selecione a marca</option>
+    </select>
+    
+    <label>Modelo: </label><input type="text" ng-model="carro.modelo"></p>
 
 <p>
     <label>Selecione o tipo: </label>
@@ -73,12 +104,16 @@
 <p><label>Ano Modelo: </label><input type="text" ng-model="carro.anoModelo"></p>
 <p>
     <label>Selecione o combustível: </label>
-    <select ng-model="carro.combustivel" ng-options="combustivel for combustivel in combustiveis"></select>
-</p>
+    <select ng-model="carro.combustivel" ng-options="combustivel for combustivel in combustiveis">
 
+        <option value="">
+            Selecione o combustível
+        </option>
+    </select>
+</p>
 <br/>
 
-<button ng-click="adicionarCarro(carro)">Adicionar </button>
-    
+<button class="btn btn-primary" ng-click="adicionarCarro(carro)">Adicionar </button>
+</div>
 </body>
 </html>
