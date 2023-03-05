@@ -17,14 +17,60 @@
                 {marca: "Ford", modelo: "Fiesta", cor: "Branca", anoModelo: "2016", combustivel: "Flex"},
                 {marca: "Honda", modelo: "City", cor: "Preta", anoModelo: "2017", combustivel: "Flex"},
                 {marca: "Toyota", modelo: "Corolla", cor: "Cinza", anoModelo: "2016", combustivel: "Flex"},
-                {marca: "Toyota", modelo: "Picape Hilux", cor: "Prata", anoModelo: "2017", combustivel: "Diesel"},
+                {marca: "Toyota", modelo: "Picape Hilux", cor: "Prata", anoModelo: "2017", combustivel: "Diesel"}
             
             ];
 
-            $scope.marcas = ["Chevrolet", "Ford", "Honda", "Toyota", "Fiat", "Volkswagen"];
-            $scope.cores = ["Branca", "Preto", "Prata", "Cinza", "Vermelha", "Azul"];
-            $scope.tipos = ["Hatch", "Cupê", "Sedã", "Perua", "Picape", "Van", "Minivan", "SUV"];
-            $scope.combustiveis = ["Gasolina", "Álcool", "Diesel", "Gás/GLP", "Flexível"];
+            $scope.marcas = [
+                { codigoMarca: 1, nomeMarca: "Chevrolet" },
+                { codigoMarca: 2, nomeMarca: "Ford" },
+                { codigoMarca: 3, nomeMarca: "Volkswagen" },
+                { codigoMarca: 4, nomeMarca: "Fiat" },
+                { codigoMarca: 5, nomeMarca: "Honda" },
+                { codigoMarca: 6, nomeMarca: "Toyota" },
+                { codigoMarca: 7, nomeMarca: "Audi" }
+
+            ];
+
+            $scope.cores = [
+
+                { codigoCor: 1, nomeCor: "Branca" },
+                { codigoCor: 2, nomeCor: "Preta" },
+                { codigoCor: 3, nomeCor: "Prata" },
+                { codigoCor: 4, nomeCor: "Cinza" },
+                { codigoCor: 5, nomeCor: "Vermelha" },
+                { codigoCor: 6, nomeCor: "Azul" }
+
+            ];
+
+            $scope.tipos = [
+
+                { codigoTipo: 1, nomeTipo: "Hatch", classeVeiculo: "Carro de passeio" },
+                { codigoTipo: 2, nomeTipo: "Cupê", classeVeiculo: "Carro de passeio" },
+                { codigoTipo: 3, nomeTipo: "Sedã", classeVeiculo: "Carro de passeio" },
+                { codigoTipo: 4, nomeTipo: "Perua", classeVeiculo: "Carro de passeio" },
+                { codigoTipo: 5, nomeTipo: "Picape", classeVeiculo: "Utilitário" },
+                { codigoTipo: 6, nomeTipo: "Van", classeVeiculo: "Utilitário" },
+                { codigoTipo: 7, nomeTipo: "Minivan", classeVeiculo: "Utilitário" },
+                { codigoTipo: 8, nomeTipo: "SUV", classeVeiculo: "Utilitário" }
+
+            ];
+
+            $scope.combustiveis = [
+
+                { codigoCombustivel: 1, nomeCombustivel: "Gasolina" },
+                { codigoCombustivel: 2, nomeCombustivel: "Álcool" },
+                { codigoCombustivel: 3, nomeCombustivel: "Diesel" },
+                { codigoCombustivel: 4, nomeCombustivel: "Gás/GLP" },
+                { codigoCombustivel: 5, nomeCombustivel: "Flexível" },
+                { codigoCombustivel: 6, nomeCombustivel: "Elétrico" },
+
+            ];
+
+            //$scope.marcas = ["Chevrolet", "Ford", "Honda", "Toyota", "Fiat", "Volkswagen"];
+            //$scope.cores = ["Branca", "Preto", "Prata", "Cinza", "Vermelha", "Azul"];
+            //$scope.tipos = ["Hatch", "Cupê", "Sedã", "Perua", "Picape", "Van", "Minivan", "SUV"];
+            //$scope.combustiveis = ["Gasolina", "Álcool", "Diesel", "Gás/GLP", "Flexível"];
 
             $scope.adicionarCarro = function (carro) {
                 $scope.carros.push(carro);
@@ -67,17 +113,19 @@
     <tr>
         <th>Marca</th>
         <th>Modelo</th>
+        <th>Tipo</th>
         <th>Cor</th>
         <th>Ano modelo</th>
         <th>Combustível</th>
     </tr>
     <tr ng-repeat="carro in carros">
 
-        <td> {{ carro.marca }} </td>
+        <td> {{ carro.marca.nomeMarca }} </td>
         <td> {{ carro.modelo }} </td>
-        <td> {{ carro.cor }} </td>
+        <td> {{ carro.tipo.nomeTipo }} </td>
+        <td> {{ carro.cor.nomeCor }} </td>
         <td> {{ carro.anoModelo }} </td>
-        <td> {{ carro.combustivel }} </td>
+        <td> {{ carro.combustivel.nomeCombustivel }} </td>
 
     </tr>
 </table>
@@ -85,29 +133,31 @@
 <div class="form-control">
 <p>
     <label>Selecione a marca: </label>
-    <select ng-model="carro.marca" ng-options="marca for marca in marcas">
-    <option value="">Selecione a marca</option>
+    <select ng-model="carro.marca" ng-options="marca as marca.nomeMarca for marca in marcas">
+    <option value="">Selecione a Marca</option>
     </select>
     
-    <label>Modelo: </label><input type="text" ng-model="carro.modelo"></p>
+    <label>Modelo:  </label> <input type="text" ng-model="carro.modelo"></p>
 
 <p>
-    <label>Selecione o tipo: </label>
-    <select ng-model="carro.tipo" ng-options="tipo for tipo in tipos"></select>
+    <label>Selecione o Tipo: </label>
+    <select ng-model="carro.tipo" ng-options="tipo as tipo.nomeTipo group by tipo.classeVeiculo for tipo in tipos">
+    <option value="">Selecione a Tipo</option>
+    </select>
+
+    <label>Selecione a Cor: </label>
+    <select ng-model="carro.cor" ng-options="cor as cor.nomeCor for cor in cores">
+        <option value="">Selecione a Cor</option>
+    </select>
 </p>
 
-<p>
-    <label>Selecione a cor: </label>
-    <select ng-model="carro.cor" ng-options="cor for cor in cores"></select>
-</p>
+<p><label>Ano Modelo:  </label> <input type="text" ng-model="carro.anoModelo">
 
-<p><label>Ano Modelo: </label><input type="text" ng-model="carro.anoModelo"></p>
-<p>
-    <label>Selecione o combustível: </label>
-    <select ng-model="carro.combustivel" ng-options="combustivel for combustivel in combustiveis">
+    <label>Selecione o Combustível: </label>
+    <select ng-model="carro.combustivel" ng-options="combustivel as combustivel.nomeCombustivel for combustivel in combustiveis">
 
         <option value="">
-            Selecione o combustível
+            Selecione o Combustível
         </option>
     </select>
 </p>
