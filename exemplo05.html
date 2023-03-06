@@ -137,10 +137,9 @@
         <th>Cilindrada</th>
         <th>Dt Inclusão</th>
         <th>R$ Diária</th>
-
-
     </tr>
-    <tr ng-repeat="carro in carros">
+
+    <tr ng-repeat="carro in carros | filter:{placa:numeroPlaca}">
 
         <td> {{ carro.marca.nomeMarca }} </td>
         <td> {{ carro.modelo }} </td>
@@ -156,7 +155,7 @@
 
     </tr>
 </table>
-<hr/>
+
 <div class="form-control">
     <form name="CadastroVeiculo">
 <p>
@@ -260,6 +259,12 @@ Digite o valor da diária do veículo!
 
 
 <button class="btn btn-primary" ng-click="adicionarCarro(carro)" ng-disabled="CadastroVeiculo.$invalid">Adicionar </button>
+
+<div style="margin-top:20px; padding:10px; background-color: #77ddff;">
+    <label>Digite o número da placa do veículo:</label>
+    <input type="text" ng-model="numeroPlaca" ng-pattern="/^[A-Z,a-z]{3}-\d{4}/"/>
+</div>
+
 </form>
 </div>
 </body>
