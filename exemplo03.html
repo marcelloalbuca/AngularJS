@@ -67,6 +67,19 @@
 
             ];
 
+            
+            $scope.cilindradas = [
+
+                { codigoCilindrada: 1, descricaoCilindrada: "1,0 litro" },
+                { codigoCilindrada: 2, descricaoCilindrada: "1,4 litro" },
+                { codigoCilindrada: 3, descricaoCilindrada: "1,8 litro" },
+                { codigoCilindrada: 4, descricaoCilindrada: "2,0 litro" },
+                { codigoCilindrada: 5, descricaoCilindrada: "2,5 litro" },
+                { codigoCilindrada: 6, descricaoCilindrada: "3,0 litro" },
+
+            ];
+
+
             //$scope.marcas = ["Chevrolet", "Ford", "Honda", "Toyota", "Fiat", "Volkswagen"];
             //$scope.cores = ["Branca", "Preto", "Prata", "Cinza", "Vermelha", "Azul"];
             //$scope.tipos = ["Hatch", "Cupê", "Sedã", "Perua", "Picape", "Van", "Minivan", "SUV"];
@@ -117,6 +130,8 @@
         <th>Cor</th>
         <th>Ano modelo</th>
         <th>Combustível</th>
+        <th>Cilindrada</th>
+
     </tr>
     <tr ng-repeat="carro in carros">
 
@@ -126,6 +141,7 @@
         <td> {{ carro.cor.nomeCor }} </td>
         <td> {{ carro.anoModelo }} </td>
         <td> {{ carro.combustivel.nomeCombustivel }} </td>
+        <td> {{ carro.cilindrada.descricaoCilindrada }} </td>
 
     </tr>
 </table>
@@ -160,6 +176,16 @@
             Selecione o Combustível
         </option>
     </select>
+</p>
+
+<p>
+    <label>Selecione a Cilindrada: </label>
+    <select ng-model="carro.cilindrada" ng-options="cilindrada as cilindrada.descricaoCilindrada for cilindrada in cilindradas">
+
+        <option value="">
+            Selecione a Cilindrada
+        </option>
+    </select>    
 </p>
 <br/>
 
