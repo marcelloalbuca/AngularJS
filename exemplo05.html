@@ -13,7 +13,7 @@
         alugaCarro.controller('alugarCarroCtrl', function ($scope) {
             $scope.nomeAplicacao = "Aluguel de Carro - Versão 5";
             $scope.carros = [
-                {marca: "Chevrolet", modelo: "Onix", placa: "ABC-1234", tipo : "Hatch" , cor: "Preto", anoModelo: "2018", combustivel: "Flex", dataInclusao: new Date(), valorDiaria: 60},
+                {marca: "Chevrolet", modelo: "Onix", placa: "ABC-1111", tipo : "Hatch" , cor: "Preto", anoModelo: "2018", combustivel: "Flex", dataInclusao: new Date(), valorDiaria: 60},
                 {marca: "Chevrolet", modelo: "Blazer", placa: "ABC-1234", tipo : "SUV", cor: "Prata", anoModelo: "2016", combustivel: "Diesel", dataInclusao: new Date(), valorDiaria: 60},
                 {marca: "Ford", modelo: "Fiesta", placa: "ABC-1234", tipo : "Hatch" , cor: "Branca", anoModelo: "2016", combustivel: "Flex", dataInclusao: new Date(), valorDiaria: 60},
                 {marca: "Honda", modelo: "City", placa: "ABC-1234", tipo : "Sedã" , cor: "Preta", anoModelo: "2017", combustivel: "Flex", dataInclusao: new Date(), valorDiaria: 60},
@@ -137,8 +137,9 @@
         <th>Cilindrada</th>
         <th>Dt Inclusão</th>
         <th>R$ Diária</th>
-    </tr>
 
+        
+    </tr>
     <tr ng-repeat="carro in carros | filter:{placa:numeroPlaca}">
 
         <td> {{ carro.marca.nomeMarca }} </td>
@@ -150,7 +151,7 @@
         <td> {{ carro.combustivel.nomeCombustivel }} </td>
         <td> {{ carro.cilindrada.descricaoCilindrada }} </td>
         <td> {{ carro.dataInclusao | date:"dd/MM/yyyy" }} </td>
-        <td style="text-align: right;"> {{ carro.valorDiaria | currency }} </td>
+        <td> {{ carro.valorDiaria | currency }} </td>
 
 
     </tr>
