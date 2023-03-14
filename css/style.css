@@ -1,0 +1,23 @@
+.table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: beige;
+}
+
+.tituloAplicacao {
+    background-color: #fcdd7a;
+    border-radius: 5px;
+    text-align: center;
+    width: 800px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
